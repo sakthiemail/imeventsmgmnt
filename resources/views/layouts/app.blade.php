@@ -51,7 +51,8 @@
                         <li><a href="{{ url('/') }}">Home</a></li>
                         @if (!Auth::guest())
                             <li><a href="{{ route('posts.create') }}">New Article</a></li>
-                         @endif
+                        @endif
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -97,8 +98,8 @@
             </div>
         @endif 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">              
-                @include ('errors.list') {{-- Including error file --}}
+            <div class="col-md-8 col-md-offset-2">
+                {{--  @include ('errors.list') Including error file --}}
             </div>
         </div>
 
