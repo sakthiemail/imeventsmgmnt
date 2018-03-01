@@ -1,7 +1,7 @@
 ### Installation
-* `git clone https://github.com/caleboki/acl.git`
+* `git clone https://github.com/sakthiemail/usermanagement.git`
 
-* `cd acl`
+* `cd usermanagement`
 
 * `composer install`
 
