@@ -1,5 +1,5 @@
 ### Installation
-* `git clone https://github.com/sakthiemail/usermanagement.git`
+* `git clone https://github.com/sakthiemail/imeventsmgmnt.git`
 
 * `cd usermanagement`
 
