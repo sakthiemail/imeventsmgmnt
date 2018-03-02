@@ -20,12 +20,13 @@ class CreateImeventsTable extends Migration
             $table->integer('type')->unsigned()->default('0');
             $table->string('subject');
             $table->text('description')->nullable();
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->text('location')->nullable();
             $table->tinyInteger('billable')->default('0');
             $table->tinyInteger('status')->default('0');
             $table->text('reason')->nullable();
+            $table->string('remainder_interval')->nullable();
             $table->foreign("user_id")->references('id')->on('users');
             $table->timestamps();
         });

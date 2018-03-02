@@ -1,76 +1,35 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Laravel Timezones</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
-    <style>
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            display: table;
-            font-weight: 100;
-            font-family: 'Lato';
-        }
-
-        .container {
-            text-align: center;
-            display: table-cell;
-            vertical-align: middle;
-        }
-
-        .content {
-            text-align: center;
-            display: inline-block;
-        }
-
-        .title {
-            font-size: 96px;
-        }
-    </style>
-</head>
-<body>
+@extends('layouts.app')
+@section('title', '| Events')
+@section('content')
 <div class="col-lg-10 col-lg-offset-1">
-    <h1><i class="fa fa-users"></i> User Administration <a href="{{ route('roles.index') }}" class="btn btn-default pull-right">Roles</a>
-        <a href="{{ route('permissions.index') }}" class="btn btn-default pull-right">Permissions</a></h1>
-    <hr>
     <div class="table-responsive">
         <table class="table table-bordered table-striped">
 
             <thead>
             <tr>
-                <th>Event Title</th>
-                <th>Event Description</th>
-                <th>Start Time </th>
-                <th>End Time</th>
+                <th>Subject</th>
+                <th>Description</th>
+                <th>Start Date </th>
+                <th>End Date</th>
                 <th>Operations</th>
             </tr>
             </thead>
 
             <tbody>
+
             @foreach ($imevents as $imevent)
                 <tr>
 
-                    <td>{{ $imevent->title}}</td>
+                    <td>{{ $imevent->subject}}</td>
                     <td>{{ $imevent->description }}</td>
-                    <td>{{ $imevent->start_time }}</td>
-                    <td>{{ $imevent->end_time }}</td>
-                    <td>{{ $imevent->user->all->pluck('name')->implode(' ') }}</td>{{-- Retrieve array of roles associated to a user and convert to string --}}
-
+                    <td>{{ $imevent->start_date }}</td>
+                    <td>{{ $imevent->end_date }}</td>
                     <td>
-                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
-
-                        {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id] ]) !!}
+                        {!! Form::open(['url'=>'calendar/event/delete/'.$imevent->id,'method' => 'DELETE']) !!}
+                        <a href="{{ url('calendar/events/calendar-view') }}" class="btn btn-success text-left" style="margin-right: 3px;">Calendar View</a>
+                        <a href="{{ url('calendar/event/edit/'.$imevent->id) }}" class="btn btn-info" style="margin-right: 3px;">Edit</a>
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
-
                     </td>
                 </tr>
             @endforeach
@@ -79,8 +38,8 @@
         </table>
     </div>
 
-    <a href="{{ route('users.create') }}" class="btn btn-success">Add User</a>
+    <a href="{{ url('calendar/event/add') }}" class="btn btn-success">Add Event</a>
 
 </div>
-</body>
-</html>
+
+@endsection

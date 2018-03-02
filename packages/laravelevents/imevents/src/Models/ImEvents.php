@@ -2,17 +2,32 @@
 
 namespace Laravelevents\ImEvents\Models;
 
-use Laravelevents\ImEvents\Models\User;
-use \Illuminate\Database\Eloquent\Model as Eloquent;
+use Laravelevents\ImEvents\Models\User as User;
+use Laravelevents\ImEvents\Models\Invitee as Invitee;
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class ImEvents extends Eloquent
 {
     protected $table='imevents';
 
-    protected $fillable = ['title','start_date','end_date','user_id'];
+    protected $fillable = [
+        'user_id',
+        'subject',
+        'description',
+        'start_date',
+        'end_date',
+        'location',
+        'user_id',
+        'billable',
+        'status',
+        'reason',
+        'remainder_interval',
+    ];
 
-    public function users()
+    public function invitees()
     {
-        return $this->hasMany('Laravelevents\ImEvents\Models\User');
+        return $this->hasMany(
+            'Laravelevents\ImEvents\Models\Invitee','imevent_id','id'
+        );
     }
 }
